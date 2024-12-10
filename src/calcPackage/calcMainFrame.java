@@ -1,5 +1,7 @@
 package calcPackage;
 
+import java.awt.event.KeyEvent;
+
 public class calcMainFrame extends javax.swing.JFrame {
 
     public calcMainFrame() {
@@ -47,6 +49,11 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         displayTextField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         displayTextField.setText("0");
+        displayTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                displayTextFieldKeyReleased(evt);
+            }
+        });
 
         Button4.setText("4");
         Button4.setMaximumSize(new java.awt.Dimension(60, 104));
@@ -318,59 +325,68 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
         // TODO add your handling code here:
-         displayTextField.setText(getTextFieldEntry() + "2");
+        displayTextField.setText(getTextFieldEntry() + "2");
     }//GEN-LAST:event_Button2ActionPerformed
 
     private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
         // TODO add your handling code here:
-         displayTextField.setText(getTextFieldEntry() + "3");
+        displayTextField.setText(getTextFieldEntry() + "3");
     }//GEN-LAST:event_Button3ActionPerformed
 
     private void Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button4ActionPerformed
         // TODO add your handling code here:
-         displayTextField.setText(getTextFieldEntry() + "4");
+        displayTextField.setText(getTextFieldEntry() + "4");
     }//GEN-LAST:event_Button4ActionPerformed
 
     private void Button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button5ActionPerformed
         // TODO add your handling code here:
-         displayTextField.setText(getTextFieldEntry() + "5");
+        displayTextField.setText(getTextFieldEntry() + "5");
     }//GEN-LAST:event_Button5ActionPerformed
 
     private void Button7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button7ActionPerformed
         // TODO add your handling code here:
-         displayTextField.setText(getTextFieldEntry() + "7");
+        displayTextField.setText(getTextFieldEntry() + "7");
     }//GEN-LAST:event_Button7ActionPerformed
 
     private void Button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button8ActionPerformed
         // TODO add your handling code here:
-         displayTextField.setText(getTextFieldEntry() + "8");
+        displayTextField.setText(getTextFieldEntry() + "8");
     }//GEN-LAST:event_Button8ActionPerformed
 
     private void Button9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button9ActionPerformed
         // TODO add your handling code here:
-         displayTextField.setText(getTextFieldEntry() + "9");
+        displayTextField.setText(getTextFieldEntry() + "9");
     }//GEN-LAST:event_Button9ActionPerformed
 
     private void Button0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button0ActionPerformed
         // TODO add your handling code here:
-         displayTextField.setText(getTextFieldEntry() + "0");
+        displayTextField.setText(getTextFieldEntry() + "0");
     }//GEN-LAST:event_Button0ActionPerformed
 
     private void PeriodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeriodButtonActionPerformed
         // TODO add your handling code here:
-         displayTextField.setText(getTextFieldEntry() + ".");
+        displayTextField.setText(getTextFieldEntry() + ".");
     }//GEN-LAST:event_PeriodButtonActionPerformed
+
+    private void displayTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_displayTextFieldKeyReleased
+       keyGetDisplay(evt);
+    }//GEN-LAST:event_displayTextFieldKeyReleased
 
     public String getTextFieldEntry() {
 
         String currentText = displayTextField.getText();
-        
-        if (currentText.equals("0")){
-            
+
+        if (currentText.equals("0")) {
+
             currentText = "";
         }
 
         return currentText;
+    }
+
+    public void keyGetDisplay(KeyEvent evt) {
+
+        displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
     }
 
     public static void main(String args[]) {
