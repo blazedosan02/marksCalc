@@ -22,7 +22,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         Button7 = new javax.swing.JButton();
         Button1 = new javax.swing.JButton();
         Button0 = new javax.swing.JButton();
-        ClearButton5 = new javax.swing.JButton();
+        ClearButton = new javax.swing.JButton();
         DivisionButton = new javax.swing.JButton();
         PercentButton = new javax.swing.JButton();
         PeriodButton = new javax.swing.JButton();
@@ -39,6 +39,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calc");
+        setResizable(false);
 
         mainPanelCalc.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -51,6 +52,11 @@ public class calcMainFrame extends javax.swing.JFrame {
         Button4.setMaximumSize(new java.awt.Dimension(60, 104));
         Button4.setMinimumSize(new java.awt.Dimension(60, 104));
         Button4.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button4ActionPerformed(evt);
+            }
+        });
 
         PlusMinusButton.setText("+/-");
         PlusMinusButton.setMaximumSize(new java.awt.Dimension(60, 104));
@@ -61,21 +67,41 @@ public class calcMainFrame extends javax.swing.JFrame {
         Button7.setMaximumSize(new java.awt.Dimension(60, 104));
         Button7.setMinimumSize(new java.awt.Dimension(60, 104));
         Button7.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button7ActionPerformed(evt);
+            }
+        });
 
         Button1.setText("1");
         Button1.setMaximumSize(new java.awt.Dimension(60, 104));
         Button1.setMinimumSize(new java.awt.Dimension(60, 104));
         Button1.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button1ActionPerformed(evt);
+            }
+        });
 
         Button0.setText("0");
         Button0.setMaximumSize(new java.awt.Dimension(60, 104));
         Button0.setMinimumSize(new java.awt.Dimension(60, 104));
         Button0.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button0ActionPerformed(evt);
+            }
+        });
 
-        ClearButton5.setText("C");
-        ClearButton5.setMaximumSize(new java.awt.Dimension(60, 104));
-        ClearButton5.setMinimumSize(new java.awt.Dimension(60, 104));
-        ClearButton5.setPreferredSize(new java.awt.Dimension(60, 104));
+        ClearButton.setText("C");
+        ClearButton.setMaximumSize(new java.awt.Dimension(60, 104));
+        ClearButton.setMinimumSize(new java.awt.Dimension(60, 104));
+        ClearButton.setPreferredSize(new java.awt.Dimension(60, 104));
+        ClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearButtonActionPerformed(evt);
+            }
+        });
 
         DivisionButton.setText("/");
         DivisionButton.setMaximumSize(new java.awt.Dimension(60, 104));
@@ -91,21 +117,41 @@ public class calcMainFrame extends javax.swing.JFrame {
         PeriodButton.setMaximumSize(new java.awt.Dimension(60, 104));
         PeriodButton.setMinimumSize(new java.awt.Dimension(60, 104));
         PeriodButton.setPreferredSize(new java.awt.Dimension(60, 104));
+        PeriodButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PeriodButtonActionPerformed(evt);
+            }
+        });
 
         Button5.setText("5");
         Button5.setMaximumSize(new java.awt.Dimension(60, 104));
         Button5.setMinimumSize(new java.awt.Dimension(60, 104));
         Button5.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button5ActionPerformed(evt);
+            }
+        });
 
         Button2.setText("2");
         Button2.setMaximumSize(new java.awt.Dimension(60, 104));
         Button2.setMinimumSize(new java.awt.Dimension(60, 104));
         Button2.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button2ActionPerformed(evt);
+            }
+        });
 
         Button8.setText("8");
         Button8.setMaximumSize(new java.awt.Dimension(60, 104));
         Button8.setMinimumSize(new java.awt.Dimension(60, 104));
         Button8.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button8ActionPerformed(evt);
+            }
+        });
 
         TimesButton.setText("*");
         TimesButton.setMaximumSize(new java.awt.Dimension(60, 104));
@@ -121,11 +167,21 @@ public class calcMainFrame extends javax.swing.JFrame {
         Button3.setMaximumSize(new java.awt.Dimension(60, 104));
         Button3.setMinimumSize(new java.awt.Dimension(60, 104));
         Button3.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button3ActionPerformed(evt);
+            }
+        });
 
         Button9.setText("9");
         Button9.setMaximumSize(new java.awt.Dimension(60, 104));
         Button9.setMinimumSize(new java.awt.Dimension(60, 104));
         Button9.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button9ActionPerformed(evt);
+            }
+        });
 
         EqualsButton.setText("=");
         EqualsButton.setMaximumSize(new java.awt.Dimension(60, 104));
@@ -167,7 +223,7 @@ public class calcMainFrame extends javax.swing.JFrame {
                     .addGroup(mainPanelCalcLayout.createSequentialGroup()
                         .addGroup(mainPanelCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(mainPanelCalcLayout.createSequentialGroup()
-                                .addComponent(ClearButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(PlusMinusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(mainPanelCalcLayout.createSequentialGroup()
@@ -202,7 +258,7 @@ public class calcMainFrame extends javax.swing.JFrame {
                 .addComponent(displayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ClearButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PlusMinusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PercentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DivisionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -230,7 +286,7 @@ public class calcMainFrame extends javax.swing.JFrame {
                     .addComponent(Button0, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PeriodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EqualsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,6 +303,76 @@ public class calcMainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
+        // TODO add your handling code here:
+
+        displayTextField.setText(getTextFieldEntry() + "1");
+
+    }//GEN-LAST:event_Button1ActionPerformed
+
+    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
+        // TODO add your handling code here:
+
+        displayTextField.setText("0");
+    }//GEN-LAST:event_ClearButtonActionPerformed
+
+    private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
+        // TODO add your handling code here:
+         displayTextField.setText(getTextFieldEntry() + "2");
+    }//GEN-LAST:event_Button2ActionPerformed
+
+    private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
+        // TODO add your handling code here:
+         displayTextField.setText(getTextFieldEntry() + "3");
+    }//GEN-LAST:event_Button3ActionPerformed
+
+    private void Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button4ActionPerformed
+        // TODO add your handling code here:
+         displayTextField.setText(getTextFieldEntry() + "4");
+    }//GEN-LAST:event_Button4ActionPerformed
+
+    private void Button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button5ActionPerformed
+        // TODO add your handling code here:
+         displayTextField.setText(getTextFieldEntry() + "5");
+    }//GEN-LAST:event_Button5ActionPerformed
+
+    private void Button7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button7ActionPerformed
+        // TODO add your handling code here:
+         displayTextField.setText(getTextFieldEntry() + "7");
+    }//GEN-LAST:event_Button7ActionPerformed
+
+    private void Button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button8ActionPerformed
+        // TODO add your handling code here:
+         displayTextField.setText(getTextFieldEntry() + "8");
+    }//GEN-LAST:event_Button8ActionPerformed
+
+    private void Button9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button9ActionPerformed
+        // TODO add your handling code here:
+         displayTextField.setText(getTextFieldEntry() + "9");
+    }//GEN-LAST:event_Button9ActionPerformed
+
+    private void Button0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button0ActionPerformed
+        // TODO add your handling code here:
+         displayTextField.setText(getTextFieldEntry() + "0");
+    }//GEN-LAST:event_Button0ActionPerformed
+
+    private void PeriodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeriodButtonActionPerformed
+        // TODO add your handling code here:
+         displayTextField.setText(getTextFieldEntry() + ".");
+    }//GEN-LAST:event_PeriodButtonActionPerformed
+
+    public String getTextFieldEntry() {
+
+        String currentText = displayTextField.getText();
+        
+        if (currentText.equals("0")){
+            
+            currentText = "";
+        }
+
+        return currentText;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -255,7 +381,7 @@ public class calcMainFrame extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -290,7 +416,7 @@ public class calcMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton Button7;
     private javax.swing.JButton Button8;
     private javax.swing.JButton Button9;
-    private javax.swing.JButton ClearButton5;
+    private javax.swing.JButton ClearButton;
     private javax.swing.JButton DivisionButton;
     private javax.swing.JButton EqualsButton;
     private javax.swing.JButton MinusButton;
