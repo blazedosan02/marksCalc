@@ -1,6 +1,12 @@
 package calcPackage;
 
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 public class calcMainFrame extends javax.swing.JFrame {
 
@@ -38,6 +44,9 @@ public class calcMainFrame extends javax.swing.JFrame {
         EqualsButton = new javax.swing.JButton();
         MinusButton = new javax.swing.JButton();
         PlusButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calc");
@@ -114,6 +123,11 @@ public class calcMainFrame extends javax.swing.JFrame {
         DivisionButton.setMaximumSize(new java.awt.Dimension(60, 104));
         DivisionButton.setMinimumSize(new java.awt.Dimension(60, 104));
         DivisionButton.setPreferredSize(new java.awt.Dimension(60, 104));
+        DivisionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DivisionButtonActionPerformed(evt);
+            }
+        });
 
         PercentButton.setText("%");
         PercentButton.setMaximumSize(new java.awt.Dimension(60, 104));
@@ -164,11 +178,21 @@ public class calcMainFrame extends javax.swing.JFrame {
         TimesButton.setMaximumSize(new java.awt.Dimension(60, 104));
         TimesButton.setMinimumSize(new java.awt.Dimension(60, 104));
         TimesButton.setPreferredSize(new java.awt.Dimension(60, 104));
+        TimesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimesButtonActionPerformed(evt);
+            }
+        });
 
         Button6.setText("6");
         Button6.setMaximumSize(new java.awt.Dimension(60, 104));
         Button6.setMinimumSize(new java.awt.Dimension(60, 104));
         Button6.setPreferredSize(new java.awt.Dimension(60, 104));
+        Button6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button6ActionPerformed(evt);
+            }
+        });
 
         Button3.setText("3");
         Button3.setMaximumSize(new java.awt.Dimension(60, 104));
@@ -199,11 +223,21 @@ public class calcMainFrame extends javax.swing.JFrame {
         MinusButton.setMaximumSize(new java.awt.Dimension(60, 104));
         MinusButton.setMinimumSize(new java.awt.Dimension(60, 104));
         MinusButton.setPreferredSize(new java.awt.Dimension(60, 104));
+        MinusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MinusButtonActionPerformed(evt);
+            }
+        });
 
         PlusButton.setText("+");
         PlusButton.setMaximumSize(new java.awt.Dimension(60, 104));
         PlusButton.setMinimumSize(new java.awt.Dimension(60, 104));
         PlusButton.setPreferredSize(new java.awt.Dimension(60, 104));
+        PlusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlusButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelCalcLayout = new javax.swing.GroupLayout(mainPanelCalc);
         mainPanelCalc.setLayout(mainPanelCalcLayout);
@@ -296,6 +330,14 @@ public class calcMainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -369,8 +411,32 @@ public class calcMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_PeriodButtonActionPerformed
 
     private void displayTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_displayTextFieldKeyReleased
-       keyGetDisplay(evt);
+        keyGetDisplay(evt);
+
+        createFilteredField(displayTextField);
     }//GEN-LAST:event_displayTextFieldKeyReleased
+
+    private void Button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button6ActionPerformed
+        displayTextField.setText(getTextFieldEntry() + "6");
+    }//GEN-LAST:event_Button6ActionPerformed
+
+    private void PlusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlusButtonActionPerformed
+
+        displayTextField.setText(getTextFieldEntry() + "+");
+    }//GEN-LAST:event_PlusButtonActionPerformed
+
+    private void MinusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusButtonActionPerformed
+
+        displayTextField.setText(getTextFieldEntry() + "-");
+    }//GEN-LAST:event_MinusButtonActionPerformed
+
+    private void TimesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimesButtonActionPerformed
+        displayTextField.setText(getTextFieldEntry() + "*");
+    }//GEN-LAST:event_TimesButtonActionPerformed
+
+    private void DivisionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DivisionButtonActionPerformed
+        displayTextField.setText(getTextFieldEntry() + "/");
+    }//GEN-LAST:event_DivisionButtonActionPerformed
 
     public String getTextFieldEntry() {
 
@@ -387,6 +453,34 @@ public class calcMainFrame extends javax.swing.JFrame {
     public void keyGetDisplay(KeyEvent evt) {
 
         displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
+    }
+
+    public void createFilteredField(JTextField field) {
+        AbstractDocument document = (AbstractDocument) field.getDocument();
+        int maxCharacters = 25;
+        document.setDocumentFilter(new DocumentFilter() {
+            public void replace(DocumentFilter.FilterBypass fb, int offs, int length, String str, AttributeSet a) throws BadLocationException {
+                String text = fb.getDocument().getText(0, fb.getDocument().getLength());
+                text = text + str;
+
+                // Check for consecutive operators
+                if (text.matches(".*[+-/*][+-/*].*")) {
+                    Toolkit.getDefaultToolkit().beep();
+                    return;
+                }
+
+                if (fb.getDocument().getLength() + str.length() <= maxCharacters
+                        && text.matches("[-+\\/*0-9.]*")) {
+                    super.replace(fb, offs, length, str, a);
+                } else {
+                    Toolkit.getDefaultToolkit().beep();
+                }
+            }
+
+            public void insertString(DocumentFilter.FilterBypass fb, int offs, String str, AttributeSet a) throws BadLocationException {
+                replace(fb, offs, 0, str, a);
+            }
+        });
     }
 
     public static void main(String args[]) {
@@ -442,6 +536,9 @@ public class calcMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton PlusMinusButton;
     private javax.swing.JButton TimesButton;
     private javax.swing.JTextField displayTextField;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel mainPanelCalc;
     // End of variables declaration//GEN-END:variables
 }
