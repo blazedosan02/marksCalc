@@ -2,6 +2,7 @@ package calcPackage;
 
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.util.Iterator;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -218,6 +219,11 @@ public class calcMainFrame extends javax.swing.JFrame {
         EqualsButton.setMaximumSize(new java.awt.Dimension(60, 104));
         EqualsButton.setMinimumSize(new java.awt.Dimension(60, 104));
         EqualsButton.setPreferredSize(new java.awt.Dimension(60, 104));
+        EqualsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EqualsButtonActionPerformed(evt);
+            }
+        });
 
         MinusButton.setText("-");
         MinusButton.setMaximumSize(new java.awt.Dimension(60, 104));
@@ -438,6 +444,42 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "/");
     }//GEN-LAST:event_DivisionButtonActionPerformed
 
+    private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
+
+        String input = displayTextField.getText();
+
+        char[] inputArray = input.toCharArray();
+
+        int operand1 = 0;
+        int operand2 = 0;
+        double result;
+        char operator = ' ';
+
+        boolean isOperand = true;
+        for (char c : inputArray) {
+            if (Character.isDigit(c)) {
+                if (isOperand) {
+                    operand1 = operand1 * 10 + Character.getNumericValue(c);
+                } else {
+                    operand2 = operand2 * 10 + Character.getNumericValue(c);
+                }
+            } else {
+                operator = c;
+                isOperand = false;
+            }
+        }
+
+        switch (operator) {
+
+            case '+':
+                displayTextField.setText(Integer.toString(operand1 + operand2));
+
+                break;
+
+        }
+
+    }//GEN-LAST:event_EqualsButtonActionPerformed
+
     public String getTextFieldEntry() {
 
         String currentText = displayTextField.getText();
@@ -457,7 +499,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     public void createFilteredField(JTextField field) {
         AbstractDocument document = (AbstractDocument) field.getDocument();
-        int maxCharacters = 25;
+        int maxCharacters = 50;
         document.setDocumentFilter(new DocumentFilter() {
             public void replace(DocumentFilter.FilterBypass fb, int offs, int length, String str, AttributeSet a) throws BadLocationException {
                 String text = fb.getDocument().getText(0, fb.getDocument().getLength());
