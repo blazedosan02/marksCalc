@@ -417,9 +417,10 @@ public class calcMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_PeriodButtonActionPerformed
 
     private void displayTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_displayTextFieldKeyReleased
-        keyGetDisplay(evt);
 
         createFilteredField(displayTextField);
+
+        keyGetDisplay(evt);
     }//GEN-LAST:event_displayTextFieldKeyReleased
 
     private void Button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button6ActionPerformed
@@ -427,6 +428,8 @@ public class calcMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Button6ActionPerformed
 
     private void PlusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlusButtonActionPerformed
+
+        createFilteredField(displayTextField);
 
         displayTextField.setText(getTextFieldEntry() + "+");
     }//GEN-LAST:event_PlusButtonActionPerformed
@@ -445,6 +448,12 @@ public class calcMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_DivisionButtonActionPerformed
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
+
+        Calculate();
+
+    }//GEN-LAST:event_EqualsButtonActionPerformed
+
+    public void Calculate() {
 
         String input = displayTextField.getText();
 
@@ -477,8 +486,7 @@ public class calcMainFrame extends javax.swing.JFrame {
                 break;
 
         }
-
-    }//GEN-LAST:event_EqualsButtonActionPerformed
+    }
 
     public String getTextFieldEntry() {
 
@@ -494,7 +502,16 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     public void keyGetDisplay(KeyEvent evt) {
 
-        displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+
+            Calculate();
+
+        } else {
+
+            displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
+
+        }
+
     }
 
     public void createFilteredField(JTextField field) {
@@ -505,14 +522,16 @@ public class calcMainFrame extends javax.swing.JFrame {
                 String text = fb.getDocument().getText(0, fb.getDocument().getLength());
                 text = text + str;
 
-                // Check for consecutive operators
-                if (text.matches(".*[+-/*][+-/*].*")) {
+                // Check for invalid input (consecutive operators, leading or trailing operators, or invalid characters)
+                if (text.matches(".*[+-/*]{2,}.*")
+                        || text.matches("^[+-/*]")
+                        || text.matches("[+-/*]$")
+                        || !text.matches("[-+\\/*0-9.]*")) {
                     Toolkit.getDefaultToolkit().beep();
                     return;
                 }
 
-                if (fb.getDocument().getLength() + str.length() <= maxCharacters
-                        && text.matches("[-+\\/*0-9.]*")) {
+                if (fb.getDocument().getLength() + str.length() <= maxCharacters) {
                     super.replace(fb, offs, length, str, a);
                 } else {
                     Toolkit.getDefaultToolkit().beep();
