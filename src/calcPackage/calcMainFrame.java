@@ -3,6 +3,7 @@ package calcPackage;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -382,7 +383,7 @@ public class calcMainFrame extends javax.swing.JFrame {
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
 
         displayTextField.setText("0");
-        
+
         resultDisplay.setText("");
     }//GEN-LAST:event_ClearButtonActionPerformed
 
@@ -497,7 +498,34 @@ public class calcMainFrame extends javax.swing.JFrame {
         switch (operator) {
 
             case '+':
-                resultDisplay.setText(Integer.toString(operand1 + operand2));
+
+                int resultSum = operand1 + operand2;
+
+                displayTextField.setText(Integer.toString(resultSum));
+
+                break;
+
+            case '-':
+
+                int resultSubs = operand1 - operand2;
+
+                displayTextField.setText(Integer.toString(resultSubs));
+
+                break;
+
+            case '*':
+
+                int resultMult = operand1 * operand2;
+
+                displayTextField.setText(Integer.toString(resultMult));
+
+                break;
+
+            case '/':
+
+                int resultDiv = operand1 / operand2;
+
+                displayTextField.setText(Integer.toString(resultDiv));
 
                 break;
 
