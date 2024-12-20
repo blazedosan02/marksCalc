@@ -2,8 +2,6 @@ package calcPackage;
 
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import java.util.Iterator;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -250,6 +248,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         resultDisplay.setEditable(false);
         resultDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         resultDisplay.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        resultDisplay.setText("-");
 
         javax.swing.GroupLayout mainPanelCalcLayout = new javax.swing.GroupLayout(mainPanelCalc);
         mainPanelCalc.setLayout(mainPanelCalcLayout);
@@ -384,7 +383,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         displayTextField.setText("0");
 
-        resultDisplay.setText("");
+        resultDisplay.setText("-");
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
@@ -437,6 +436,11 @@ public class calcMainFrame extends javax.swing.JFrame {
         createFilteredField(displayTextField);
 
         keyGetDisplay(evt);
+
+        if (displayTextField.getText().matches("\\d+[+-\\/*]\\d+$")) {
+            Calculate();
+        }
+
     }//GEN-LAST:event_displayTextFieldKeyReleased
 
     private void Button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button6ActionPerformed
@@ -501,7 +505,9 @@ public class calcMainFrame extends javax.swing.JFrame {
 
                 int resultSum = operand1 + operand2;
 
-                displayTextField.setText(Integer.toString(resultSum));
+                resultDisplay.setText(Integer.toString(resultSum));
+
+                //displayTextField.setText("");
 
                 break;
 
@@ -509,7 +515,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
                 int resultSubs = operand1 - operand2;
 
-                displayTextField.setText(Integer.toString(resultSubs));
+                resultDisplay.setText(Integer.toString(resultSubs));
 
                 break;
 
@@ -549,6 +555,15 @@ public class calcMainFrame extends javax.swing.JFrame {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
 
             Calculate();
+
+        } else if (evt.getKeyChar() == '+') {
+
+            if (!resultDisplay.getText().equals("-")) {
+
+                displayTextField.setText(resultDisplay.getText());
+            }
+
+            displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
 
         } else {
 
