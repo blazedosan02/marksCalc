@@ -437,7 +437,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         keyGetDisplay(evt);
 
-        if (displayTextField.getText().matches("\\d+[+-\\/*]\\d+$")) {
+        if (displayTextField.getText().matches("\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+")) {
             Calculate();
         }
 
@@ -476,65 +476,68 @@ public class calcMainFrame extends javax.swing.JFrame {
     public void Calculate() {
 
         String input = displayTextField.getText();
-
         char[] inputArray = input.toCharArray();
 
-        int operand1 = 0;
-        int operand2 = 0;
-        double result;
+        Number operand1 = null;
+        Number operand2 = null;
         char operator = ' ';
-
-        boolean isOperand = true;
+        StringBuilder currentNumber = new StringBuilder();
 
         for (char c : inputArray) {
-            if (Character.isDigit(c)) {
-                if (isOperand) {
-                    operand1 = operand1 * 10 + Character.getNumericValue(c);
-                } else {
-                    operand2 = operand2 * 10 + Character.getNumericValue(c);
-                }
+            if (Character.isDigit(c) || c == '.') {
+                // Build the current number as a string
+                currentNumber.append(c);
             } else {
+                // If an operator is encountered, process the current number
+                if (operand1 == null) {
+                    operand1 = processNumber(currentNumber.toString());
+                } else {
+                    operand2 = processNumber(currentNumber.toString());
+                }
+                // Store the operator
                 operator = c;
-                isOperand = false;
+                currentNumber.setLength(0); // Reset for the next number
             }
         }
 
+        // Process the final operand
+        if (operand2 == null && currentNumber.length() > 0) {
+            operand2 = processNumber(currentNumber.toString());
+        }
+
+        System.out.println(operand1);
+        System.out.println(operand2);
+
+// Perform calculation
+        double result = 0.0;
         switch (operator) {
-
             case '+':
-
-                int resultSum = operand1 + operand2;
-
-                resultDisplay.setText(Integer.toString(resultSum));
-
-                //displayTextField.setText("");
+                result = operand1.doubleValue() + operand2.doubleValue();
 
                 break;
-
             case '-':
-
-                int resultSubs = operand1 - operand2;
-
-                resultDisplay.setText(Integer.toString(resultSubs));
-
+                result = operand1.doubleValue() - operand2.doubleValue();
                 break;
-
             case '*':
-
-                int resultMult = operand1 * operand2;
-
-                displayTextField.setText(Integer.toString(resultMult));
-
+                result = operand1.doubleValue() * operand2.doubleValue();
                 break;
-
             case '/':
-
-                int resultDiv = operand1 / operand2;
-
-                displayTextField.setText(Integer.toString(resultDiv));
-
+                if (operand2.doubleValue() == 0) {
+                    resultDisplay.setText("Undefined");
+                    return;
+                }
+                result = operand1.doubleValue() / operand2.doubleValue();
                 break;
 
+        }
+
+        // Display the result
+        if (result == (int) result) {
+            // Display as integer if the result is a whole number
+            resultDisplay.setText(Integer.toString((int) result));
+        } else {
+            // Display as a floating-point number
+            resultDisplay.setText(Double.toString(result));
         }
     }
 
@@ -556,7 +559,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
             Calculate();
 
-        } else if (evt.getKeyChar() == '+') {
+        } else if (evt.getKeyChar() == '+' || evt.getKeyChar() == '-' || evt.getKeyChar() == '*' || evt.getKeyChar() == '/') {
 
             if (!resultDisplay.getText().equals("-")) {
 
@@ -601,6 +604,20 @@ public class calcMainFrame extends javax.swing.JFrame {
                 replace(fb, offs, 0, str, a);
             }
         });
+    }
+
+    public static Number processNumber(String input) {
+        try {
+            if (input.contains(".")) {
+                // Treat as floating-point number
+                return Double.valueOf(input);
+            } else {
+                // Treat as integer
+                return Integer.valueOf(input);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid number format: " + input);
+        }
     }
 
     public static void main(String args[]) {
