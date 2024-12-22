@@ -485,49 +485,37 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         for (char c : inputArray) {
             if (Character.isDigit(c) || c == '.') {
-                // Build the current number as a string
+
                 currentNumber.append(c);
             } else {
-                // If an operator is encountered, process the current number
+
                 if (operand1 == null) {
                     operand1 = processNumber(currentNumber.toString());
                 } else {
                     operand2 = processNumber(currentNumber.toString());
                 }
-                // Store the operator
+
                 operator = c;
                 currentNumber.setLength(0); // Reset for the next number
             }
         }
 
-        // Process the final operand
         if (operand2 == null && currentNumber.length() > 0) {
             operand2 = processNumber(currentNumber.toString());
         }
 
-        System.out.println(operand1);
-        System.out.println(operand2);
-
-// Perform calculation
         double result = 0.0;
         switch (operator) {
-            case '+':
-                result = operand1.doubleValue() + operand2.doubleValue();
-
-                break;
-            case '-':
-                result = operand1.doubleValue() - operand2.doubleValue();
-                break;
-            case '*':
-                result = operand1.doubleValue() * operand2.doubleValue();
-                break;
-            case '/':
+            case '+' -> result = operand1.doubleValue() + operand2.doubleValue();
+            case '-' -> result = operand1.doubleValue() - operand2.doubleValue();
+            case '*' -> result = operand1.doubleValue() * operand2.doubleValue();
+            case '/' -> {
                 if (operand2.doubleValue() == 0) {
                     resultDisplay.setText("Undefined");
                     return;
                 }
                 result = operand1.doubleValue() / operand2.doubleValue();
-                break;
+            }
 
         }
 
@@ -557,7 +545,9 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
 
-            Calculate();
+            displayTextField.setText(resultDisplay.getText());
+
+            resultDisplay.setText("-");
 
         } else if (evt.getKeyChar() == '+' || evt.getKeyChar() == '-' || evt.getKeyChar() == '*' || evt.getKeyChar() == '/') {
 
@@ -609,11 +599,9 @@ public class calcMainFrame extends javax.swing.JFrame {
     public static Number processNumber(String input) {
         try {
             if (input.contains(".")) {
-                // Treat as floating-point number
                 return Double.valueOf(input);
             } else {
-                // Treat as integer
-                return Integer.valueOf(input);
+                return Long.valueOf(input);
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid number format: " + input);
