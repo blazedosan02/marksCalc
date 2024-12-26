@@ -53,12 +53,11 @@ public class calcMainFrame extends javax.swing.JFrame {
         setTitle("Calc");
         setResizable(false);
 
-        mainPanelCalc.setBackground(new java.awt.Color(255, 255, 255));
-
         displayTextField.setEditable(false);
         displayTextField.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         displayTextField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         displayTextField.setText("0");
+        displayTextField.setBorder(null);
         displayTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 displayTextFieldKeyReleased(evt);
@@ -249,6 +248,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         resultDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         resultDisplay.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         resultDisplay.setText("-");
+        resultDisplay.setBorder(null);
 
         javax.swing.GroupLayout mainPanelCalcLayout = new javax.swing.GroupLayout(mainPanelCalc);
         mainPanelCalc.setLayout(mainPanelCalcLayout);
@@ -313,7 +313,7 @@ public class calcMainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(displayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                .addComponent(resultDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,10 +363,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainPanelCalc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainPanelCalc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -378,6 +375,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "1");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
 
     }//GEN-LAST:event_Button1ActionPerformed
 
@@ -387,6 +386,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "2");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_Button2ActionPerformed
 
     private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
@@ -394,6 +395,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "3");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_Button3ActionPerformed
 
     private void Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button4ActionPerformed
@@ -401,6 +404,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "4");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_Button4ActionPerformed
 
     private void Button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button5ActionPerformed
@@ -408,6 +413,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "5");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_Button5ActionPerformed
 
     private void Button7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button7ActionPerformed
@@ -415,6 +422,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "7");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_Button7ActionPerformed
 
     private void Button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button8ActionPerformed
@@ -422,6 +431,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "8");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_Button8ActionPerformed
 
     private void Button9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button9ActionPerformed
@@ -429,6 +440,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "9");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_Button9ActionPerformed
 
     private void Button0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button0ActionPerformed
@@ -436,6 +449,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "0");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_Button0ActionPerformed
 
     private void PeriodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeriodButtonActionPerformed
@@ -443,6 +458,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + ".");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_PeriodButtonActionPerformed
 
     private void displayTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_displayTextFieldKeyReleased
@@ -461,6 +478,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "6");
 
         performCalculationButton("");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_Button6ActionPerformed
 
     private void PlusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlusButtonActionPerformed
@@ -468,6 +487,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "+");
 
         performCalculationButton("+");
+        
+        displayTextField.requestFocus();
 
 
     }//GEN-LAST:event_PlusButtonActionPerformed
@@ -477,6 +498,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "-");
 
         performCalculationButton("-");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_MinusButtonActionPerformed
 
     private void TimesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimesButtonActionPerformed
@@ -484,6 +507,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "*");
 
         performCalculationButton("*");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_TimesButtonActionPerformed
 
     private void DivisionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DivisionButtonActionPerformed
@@ -491,6 +516,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "/");
 
         performCalculationButton("/");
+        
+        displayTextField.requestFocus();
     }//GEN-LAST:event_DivisionButtonActionPerformed
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
@@ -498,16 +525,18 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(resultDisplay.getText());
 
         resultDisplay.setText("-");
-
+        
+        displayTextField.requestFocus();
 
     }//GEN-LAST:event_EqualsButtonActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
 
         displayTextField.setText("0");
-
         resultDisplay.setText("-");
 
+        displayTextField.requestFocus();
+        
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     public void Calculate() {
