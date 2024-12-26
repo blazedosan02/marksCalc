@@ -377,65 +377,79 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         displayTextField.setText(getTextFieldEntry() + "1");
 
+        performCalculationButton("");
+
     }//GEN-LAST:event_Button1ActionPerformed
 
-    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
-
-        displayTextField.setText("0");
-
-        resultDisplay.setText("-");
-    }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
         // TODO add your handling code here:
         displayTextField.setText(getTextFieldEntry() + "2");
+
+        performCalculationButton("");
     }//GEN-LAST:event_Button2ActionPerformed
 
     private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
         // TODO add your handling code here:
         displayTextField.setText(getTextFieldEntry() + "3");
+
+        performCalculationButton("");
     }//GEN-LAST:event_Button3ActionPerformed
 
     private void Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button4ActionPerformed
         // TODO add your handling code here:
         displayTextField.setText(getTextFieldEntry() + "4");
+
+        performCalculationButton("");
     }//GEN-LAST:event_Button4ActionPerformed
 
     private void Button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button5ActionPerformed
         // TODO add your handling code here:
         displayTextField.setText(getTextFieldEntry() + "5");
+
+        performCalculationButton("");
     }//GEN-LAST:event_Button5ActionPerformed
 
     private void Button7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button7ActionPerformed
         // TODO add your handling code here:
         displayTextField.setText(getTextFieldEntry() + "7");
+
+        performCalculationButton("");
     }//GEN-LAST:event_Button7ActionPerformed
 
     private void Button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button8ActionPerformed
         // TODO add your handling code here:
         displayTextField.setText(getTextFieldEntry() + "8");
+
+        performCalculationButton("");
     }//GEN-LAST:event_Button8ActionPerformed
 
     private void Button9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button9ActionPerformed
         // TODO add your handling code here:
         displayTextField.setText(getTextFieldEntry() + "9");
+
+        performCalculationButton("");
     }//GEN-LAST:event_Button9ActionPerformed
 
     private void Button0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button0ActionPerformed
         // TODO add your handling code here:
         displayTextField.setText(getTextFieldEntry() + "0");
+
+        performCalculationButton("");
     }//GEN-LAST:event_Button0ActionPerformed
 
     private void PeriodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeriodButtonActionPerformed
         // TODO add your handling code here:
         displayTextField.setText(getTextFieldEntry() + ".");
+
+        performCalculationButton("");
     }//GEN-LAST:event_PeriodButtonActionPerformed
 
     private void displayTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_displayTextFieldKeyReleased
 
         createFilteredField(displayTextField);
 
-        keyGetDisplay(evt);
+        getKeyDisplay(evt);
 
         if (displayTextField.getText().matches("\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+")) {
             Calculate();
@@ -445,33 +459,56 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void Button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button6ActionPerformed
         displayTextField.setText(getTextFieldEntry() + "6");
+
+        performCalculationButton("");
     }//GEN-LAST:event_Button6ActionPerformed
 
     private void PlusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlusButtonActionPerformed
 
-        createFilteredField(displayTextField);
-
         displayTextField.setText(getTextFieldEntry() + "+");
+
+        performCalculationButton("+");
+
+
     }//GEN-LAST:event_PlusButtonActionPerformed
 
     private void MinusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusButtonActionPerformed
 
         displayTextField.setText(getTextFieldEntry() + "-");
+
+        performCalculationButton("-");
     }//GEN-LAST:event_MinusButtonActionPerformed
 
     private void TimesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimesButtonActionPerformed
+
         displayTextField.setText(getTextFieldEntry() + "*");
+
+        performCalculationButton("*");
     }//GEN-LAST:event_TimesButtonActionPerformed
 
     private void DivisionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DivisionButtonActionPerformed
+
         displayTextField.setText(getTextFieldEntry() + "/");
+
+        performCalculationButton("/");
     }//GEN-LAST:event_DivisionButtonActionPerformed
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
 
-        Calculate();
+        displayTextField.setText(resultDisplay.getText());
+
+        resultDisplay.setText("-");
+
 
     }//GEN-LAST:event_EqualsButtonActionPerformed
+
+    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
+
+        displayTextField.setText("0");
+
+        resultDisplay.setText("-");
+
+    }//GEN-LAST:event_ClearButtonActionPerformed
 
     public void Calculate() {
 
@@ -506,9 +543,12 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         double result = 0.0;
         switch (operator) {
-            case '+' -> result = operand1.doubleValue() + operand2.doubleValue();
-            case '-' -> result = operand1.doubleValue() - operand2.doubleValue();
-            case '*' -> result = operand1.doubleValue() * operand2.doubleValue();
+            case '+' ->
+                result = operand1.doubleValue() + operand2.doubleValue();
+            case '-' ->
+                result = operand1.doubleValue() - operand2.doubleValue();
+            case '*' ->
+                result = operand1.doubleValue() * operand2.doubleValue();
             case '/' -> {
                 if (operand2.doubleValue() == 0) {
                     resultDisplay.setText("Undefined");
@@ -541,7 +581,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         return currentText;
     }
 
-    public void keyGetDisplay(KeyEvent evt) {
+    public void getKeyDisplay(KeyEvent evt) {
 
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
 
@@ -554,6 +594,7 @@ public class calcMainFrame extends javax.swing.JFrame {
             if (!resultDisplay.getText().equals("-")) {
 
                 displayTextField.setText(resultDisplay.getText());
+
             }
 
             displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
@@ -561,6 +602,40 @@ public class calcMainFrame extends javax.swing.JFrame {
         } else {
 
             displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
+
+        }
+
+    }
+
+    public void getButtonDisplay(String operatorButton) {
+        //Logic for setting moving the result to the main display when an operator is pressed for a button
+
+        switch (operatorButton) {
+
+            case "+":
+                if (!resultDisplay.getText().equals("-")) {
+
+                    displayTextField.setText(resultDisplay.getText() + operatorButton);
+                }
+                break;
+            case "-":
+                if (!resultDisplay.getText().equals("-")) {
+
+                    displayTextField.setText(resultDisplay.getText() + operatorButton);
+                }
+                break;
+            case "*":
+                if (!resultDisplay.getText().equals("-")) {
+
+                    displayTextField.setText(resultDisplay.getText() + operatorButton);
+                }
+                break;
+            case "/":
+                if (!resultDisplay.getText().equals("-")) {
+
+                    displayTextField.setText(resultDisplay.getText() + operatorButton);
+                }
+                break;
 
         }
 
@@ -605,6 +680,17 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid number format: " + input);
+        }
+    }
+
+    public void performCalculationButton(String operatorButton) {
+
+        createFilteredField(displayTextField);
+
+        getButtonDisplay(operatorButton);
+
+        if (displayTextField.getText().matches("\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+")) {
+            Calculate();
         }
     }
 
