@@ -521,7 +521,6 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
 
-        
         //Validation for 0 to be set when the equals sign is pressed twice
         if (!displayTextField.getText().equals("") && resultDisplay.getText().equals("")) {
 
@@ -686,11 +685,11 @@ public class calcMainFrame extends javax.swing.JFrame {
                 String text = fb.getDocument().getText(0, fb.getDocument().getLength());
                 text = text + str;
 
-                // Check for invalid input (consecutive operators, leading or trailing operators, or invalid characters)
                 if (text.matches(".*[+-/*]{2,}.*")
                         || text.matches("^[+-/*]")
                         || text.matches("[+-/*]$")
-                        || !text.matches("[-+\\/*0-9.]*")) {
+                        || !text.matches("[-+\\/*0-9.]*")
+                        || text.matches(".*\\..*\\.")) {
                     Toolkit.getDefaultToolkit().beep();
                     return;
                 }
