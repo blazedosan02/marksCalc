@@ -247,7 +247,6 @@ public class calcMainFrame extends javax.swing.JFrame {
         resultDisplay.setEditable(false);
         resultDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         resultDisplay.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        resultDisplay.setText("-");
         resultDisplay.setBorder(null);
 
         javax.swing.GroupLayout mainPanelCalcLayout = new javax.swing.GroupLayout(mainPanelCalc);
@@ -375,7 +374,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "1");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
 
     }//GEN-LAST:event_Button1ActionPerformed
@@ -386,7 +385,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "2");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_Button2ActionPerformed
 
@@ -395,7 +394,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "3");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_Button3ActionPerformed
 
@@ -404,7 +403,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "4");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_Button4ActionPerformed
 
@@ -413,7 +412,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "5");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_Button5ActionPerformed
 
@@ -422,7 +421,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "7");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_Button7ActionPerformed
 
@@ -431,7 +430,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "8");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_Button8ActionPerformed
 
@@ -440,7 +439,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "9");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_Button9ActionPerformed
 
@@ -449,7 +448,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "0");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_Button0ActionPerformed
 
@@ -458,7 +457,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + ".");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_PeriodButtonActionPerformed
 
@@ -478,7 +477,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "6");
 
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_Button6ActionPerformed
 
@@ -487,7 +486,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "+");
 
         performCalculationButton("+");
-        
+
         displayTextField.requestFocus();
 
 
@@ -498,7 +497,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "-");
 
         performCalculationButton("-");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_MinusButtonActionPerformed
 
@@ -507,7 +506,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "*");
 
         performCalculationButton("*");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_TimesButtonActionPerformed
 
@@ -516,16 +515,25 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.setText(getTextFieldEntry() + "/");
 
         performCalculationButton("/");
-        
+
         displayTextField.requestFocus();
     }//GEN-LAST:event_DivisionButtonActionPerformed
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
 
-        displayTextField.setText(resultDisplay.getText());
-
-        resultDisplay.setText("-");
         
+        //Validation for 0 to be set when the equals sign is pressed twice
+        if (!displayTextField.getText().equals("") && resultDisplay.getText().equals("")) {
+
+            displayTextField.setText("0");
+        } else {
+
+            displayTextField.setText(resultDisplay.getText());
+
+            resultDisplay.setText("");
+
+        }
+
         displayTextField.requestFocus();
 
     }//GEN-LAST:event_EqualsButtonActionPerformed
@@ -533,10 +541,10 @@ public class calcMainFrame extends javax.swing.JFrame {
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
 
         displayTextField.setText("0");
-        resultDisplay.setText("-");
+        resultDisplay.setText("");
 
         displayTextField.requestFocus();
-        
+
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     public void Calculate() {
@@ -616,11 +624,11 @@ public class calcMainFrame extends javax.swing.JFrame {
 
             displayTextField.setText(resultDisplay.getText());
 
-            resultDisplay.setText("-");
+            resultDisplay.setText("");
 
         } else if (evt.getKeyChar() == '+' || evt.getKeyChar() == '-' || evt.getKeyChar() == '*' || evt.getKeyChar() == '/') {
 
-            if (!resultDisplay.getText().equals("-")) {
+            if (!resultDisplay.getText().equals("")) {
 
                 displayTextField.setText(resultDisplay.getText());
 
@@ -642,25 +650,25 @@ public class calcMainFrame extends javax.swing.JFrame {
         switch (operatorButton) {
 
             case "+":
-                if (!resultDisplay.getText().equals("-")) {
+                if (!resultDisplay.getText().equals("")) {
 
                     displayTextField.setText(resultDisplay.getText() + operatorButton);
                 }
                 break;
             case "-":
-                if (!resultDisplay.getText().equals("-")) {
+                if (!resultDisplay.getText().equals("")) {
 
                     displayTextField.setText(resultDisplay.getText() + operatorButton);
                 }
                 break;
             case "*":
-                if (!resultDisplay.getText().equals("-")) {
+                if (!resultDisplay.getText().equals("")) {
 
                     displayTextField.setText(resultDisplay.getText() + operatorButton);
                 }
                 break;
             case "/":
-                if (!resultDisplay.getText().equals("-")) {
+                if (!resultDisplay.getText().equals("")) {
 
                     displayTextField.setText(resultDisplay.getText() + operatorButton);
                 }
