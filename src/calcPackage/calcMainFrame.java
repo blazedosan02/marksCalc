@@ -677,35 +677,41 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     }
 
-    public void createFilteredField(JTextField field) {
-        AbstractDocument document = (AbstractDocument) field.getDocument();
-        int maxCharacters = 50;
-        document.setDocumentFilter(new DocumentFilter() {
-            public void replace(DocumentFilter.FilterBypass fb, int offs, int length, String str, AttributeSet a) throws BadLocationException {
-                String text = fb.getDocument().getText(0, fb.getDocument().getLength());
-                text = text + str;
-
-                if (text.matches(".*[+-/*]{2,}.*")
-                        || text.matches("^[+-/*]")
-                        || text.matches("[+-/*]$")
-                        || !text.matches("[-+\\/*0-9.]*")
-                        || text.matches(".*\\..*\\.")) {
-                    Toolkit.getDefaultToolkit().beep();
-                    return;
-                }
-
-                if (fb.getDocument().getLength() + str.length() <= maxCharacters) {
+   public void createFilteredField(JTextField field) {
+    AbstractDocument document = (AbstractDocument) field.getDocument();
+    int maxCharacters = 50;
+    document.setDocumentFilter(new DocumentFilter() {
+        @Override
+        public void replace(DocumentFilter.FilterBypass fb, int offs, int length, String str, AttributeSet a) throws BadLocationException {
+            String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
+            StringBuilder newText = new StringBuilder(currentText);
+            newText.replace(offs, offs + length, str);  // Simulate the new text after replacement
+            
+            if (isValidExpression(newText.toString())) {
+                if (newText.length() <= maxCharacters) {
                     super.replace(fb, offs, length, str, a);
                 } else {
                     Toolkit.getDefaultToolkit().beep();
                 }
+            } else {
+                Toolkit.getDefaultToolkit().beep();
             }
+        }
 
-            public void insertString(DocumentFilter.FilterBypass fb, int offs, String str, AttributeSet a) throws BadLocationException {
-                replace(fb, offs, 0, str, a);
-            }
-        });
-    }
+        @Override
+        public void insertString(DocumentFilter.FilterBypass fb, int offs, String str, AttributeSet a) throws BadLocationException {
+            replace(fb, offs, 0, str, a);
+        }
+
+        private boolean isValidExpression(String text) {
+            // Ensure the entire text matches a valid arithmetic expression
+            return text.matches("(([0-9]+(\\.[0-9]*)?)|([+\\-*/]))*")
+                   && !text.matches(".*[+\\-*/]{2,}.*")      // No consecutive operators
+                   && !text.matches(".*\\d*\\.\\d*\\..*")    // No multiple periods in one number
+                   && !text.matches("^[+\\-*/].*") ;         // No trailing operator
+        }
+    });
+}
 
     public static Number processNumber(String input) {
         try {
