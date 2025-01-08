@@ -467,7 +467,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         getKeyDisplay(evt);
 
-        if (displayTextField.getText().matches("\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+")) {
+        if (displayTextField.getText().matches("[-]*\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+")) {
             Calculate();
         }
 
@@ -555,16 +555,25 @@ public class calcMainFrame extends javax.swing.JFrame {
         Number operand2 = null;
         char operator = ' ';
         StringBuilder currentNumber = new StringBuilder();
+        
+        boolean negativeNumber = true;
 
         for (char c : inputArray) {
-            if (Character.isDigit(c) || c == '.') {
+
+            if (Character.isDigit(c) || c == '.' ||( c == '-' && negativeNumber)) {
 
                 currentNumber.append(c);
+                
+                negativeNumber = false;
+
             } else {
 
                 if (operand1 == null) {
+
                     operand1 = processNumber(currentNumber.toString());
+
                 } else {
+
                     operand2 = processNumber(currentNumber.toString());
                 }
 
@@ -574,6 +583,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         }
 
         if (operand2 == null && currentNumber.length() > 0) {
+
             operand2 = processNumber(currentNumber.toString());
         }
 
@@ -708,7 +718,7 @@ public class calcMainFrame extends javax.swing.JFrame {
                 return text.matches("(([0-9]+(\\.[0-9]*)?)|([+\\-*/]))*")
                         && !text.matches(".*[+\\-*/]{2,}.*") // No consecutive operators
                         && !text.matches(".*\\d*\\.\\d*\\..*") // No multiple periods in one number
-                        && !text.matches("^[+\\-*/].*");         // No trailing operator
+                        && !text.matches("^[+\\*/].*");         // No trailing operator
             }
         });
     }
@@ -731,7 +741,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         getButtonDisplay(operatorButton);
 
-        if (displayTextField.getText().matches("\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+")) {
+        if (displayTextField.getText().matches("[-]*\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+")) {
             Calculate();
         }
     }
