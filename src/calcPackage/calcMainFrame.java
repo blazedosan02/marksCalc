@@ -455,7 +455,13 @@ public class calcMainFrame extends javax.swing.JFrame {
     private void PeriodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeriodButtonActionPerformed
         // TODO add your handling code here:
 
-        displayTextField.setText(getTextFieldEntry() + ".");
+        if (displayTextField.getText().equals("0")) {
+
+            displayTextField.setText("0.");
+
+        } else {
+            displayTextField.setText(getTextFieldEntry() + ".");
+        }
 
         performCalculationButton("");
 
@@ -522,11 +528,10 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
 
-        //Validation for 0 to be set when the equals sign is pressed twice
-        if (!displayTextField.getText().equals("") && resultDisplay.getText().equals("")) {
-
-            displayTextField.setText("0");
-        } else {
+        
+        //The previous validation prevents the equals key from setting to blank if no operation is made
+        
+        if (!displayTextField.getText().equals("") && !resultDisplay.getText().equals("")) {
 
             displayTextField.setText(resultDisplay.getText());
 
@@ -630,8 +635,10 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     public void getKeyDisplay(KeyEvent evt) {
 
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER && (!displayTextField.getText().equals("") && !resultDisplay.getText().equals(""))) {
 
+            //The previous validation prevents the enter key from setting to blank if no operation is made
+            
             displayTextField.setText(resultDisplay.getText());
 
             resultDisplay.setText("");
