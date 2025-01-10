@@ -2,6 +2,7 @@ package calcPackage;
 
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -46,8 +47,9 @@ public class calcMainFrame extends javax.swing.JFrame {
         PlusButton = new javax.swing.JButton();
         resultDisplay = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        fileMenu = new javax.swing.JMenu();
+        aboutMenu = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calc");
@@ -346,11 +348,20 @@ public class calcMainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        fileMenu.setText("File");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        aboutMenu.setText("About");
+        aboutMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuActionPerformed(evt);
+            }
+        });
+        fileMenu.add(aboutMenu);
+
+        jMenuBar1.add(fileMenu);
+
+        editMenu.setText("Edit");
+        jMenuBar1.add(editMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -528,9 +539,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
 
-        
         //The previous validation prevents the equals key from setting to blank if no operation is made
-        
         if (!displayTextField.getText().equals("") && !resultDisplay.getText().equals("")) {
 
             displayTextField.setText(resultDisplay.getText());
@@ -551,6 +560,13 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.requestFocus();
 
     }//GEN-LAST:event_ClearButtonActionPerformed
+
+    private void aboutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuActionPerformed
+        // TODO add your handling code here:
+        
+        JOptionPane.showInternalMessageDialog(null, "Marco Lecona 2024-2025","Program By",1);
+        
+    }//GEN-LAST:event_aboutMenuActionPerformed
 
     public void Calculate() {
 
@@ -638,7 +654,6 @@ public class calcMainFrame extends javax.swing.JFrame {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER && (!displayTextField.getText().equals("") && !resultDisplay.getText().equals(""))) {
 
             //The previous validation prevents the enter key from setting to blank if no operation is made
-            
             displayTextField.setText(resultDisplay.getText());
 
             resultDisplay.setText("");
@@ -730,7 +745,8 @@ public class calcMainFrame extends javax.swing.JFrame {
                 return text.matches("(([0-9]+(\\.[0-9]*)?)|([+\\-*/]))*")
                         && !text.matches(".*[+\\-*/]{2,}.*") // No consecutive operators
                         && !text.matches(".*\\d*\\.\\d*\\..*") // No multiple periods in one number
-                        && !text.matches("^[+\\*/].*");         // No trailing operator
+                        && !text.matches("^[+\\*/].*") // No leading operator
+                        && !text.matches(".*\\.[+\\-*/].*");     // Period must be followed by a digit
             }
         });
     }
@@ -810,9 +826,10 @@ public class calcMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton PlusButton;
     private javax.swing.JButton PlusMinusButton;
     private javax.swing.JButton TimesButton;
+    private javax.swing.JMenuItem aboutMenu;
     private javax.swing.JTextField displayTextField;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel mainPanelCalc;
     private javax.swing.JTextField resultDisplay;
