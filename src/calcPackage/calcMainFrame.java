@@ -454,6 +454,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void PeriodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeriodButtonActionPerformed
         // TODO add your handling code here:
+
         displayTextField.setText(getTextFieldEntry() + ".");
 
         performCalculationButton("");
@@ -555,15 +556,15 @@ public class calcMainFrame extends javax.swing.JFrame {
         Number operand2 = null;
         char operator = ' ';
         StringBuilder currentNumber = new StringBuilder();
-        
+
         boolean negativeNumber = true;
 
         for (char c : inputArray) {
 
-            if (Character.isDigit(c) || c == '.' ||( c == '-' && negativeNumber)) {
+            if (Character.isDigit(c) || c == '.' || (c == '-' && negativeNumber)) {
 
                 currentNumber.append(c);
-                
+
                 negativeNumber = false;
 
             } else {
@@ -644,6 +645,10 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
 
             displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
+
+        } else if (evt.getKeyChar() == '.' && displayTextField.getText().equals("0")) {
+
+            displayTextField.setText("0.");
 
         } else {
 
