@@ -2,6 +2,8 @@ package calcPackage;
 
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
@@ -10,6 +12,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
 public class calcMainFrame extends javax.swing.JFrame {
+
+    String basiCalculationRegex = "[-]*\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+";
 
     public calcMainFrame() {
         initComponents();
@@ -135,6 +139,11 @@ public class calcMainFrame extends javax.swing.JFrame {
         PercentButton.setMaximumSize(new java.awt.Dimension(60, 104));
         PercentButton.setMinimumSize(new java.awt.Dimension(60, 104));
         PercentButton.setPreferredSize(new java.awt.Dimension(60, 104));
+        PercentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PercentButtonActionPerformed(evt);
+            }
+        });
 
         PeriodButton.setText(".");
         PeriodButton.setMaximumSize(new java.awt.Dimension(60, 104));
@@ -485,8 +494,8 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         getKeyDisplay(evt);
 
-        if (displayTextField.getText().matches("[-]*\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+")) {
-            Calculate();
+        if (displayTextField.getText().matches(basiCalculationRegex)) {
+            Calculate(false);
         }
 
     }//GEN-LAST:event_displayTextFieldKeyReleased
@@ -563,12 +572,23 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void aboutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuActionPerformed
         // TODO add your handling code here:
-        
-        JOptionPane.showInternalMessageDialog(null, "Marco Lecona 2024-2025","Program By",1);
-        
+
+        JOptionPane.showInternalMessageDialog(null, "Marco Lecona 2024-2025", "Program By", 1);
+
     }//GEN-LAST:event_aboutMenuActionPerformed
 
-    public void Calculate() {
+    private void PercentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PercentButtonActionPerformed
+        // TODO add your handling code here:
+
+        createFilteredField(displayTextField);
+
+        if (displayTextField.getText().matches(basiCalculationRegex)) {
+            Calculate(true);
+        }
+
+    }//GEN-LAST:event_PercentButtonActionPerformed
+
+    public void Calculate(boolean isPercentage) {
 
         String input = displayTextField.getText();
         char[] inputArray = input.toCharArray();
@@ -609,7 +629,19 @@ public class calcMainFrame extends javax.swing.JFrame {
             operand2 = processNumber(currentNumber.toString());
         }
 
+        if (isPercentage) {
+
+            //Validation is the percentage button is pressed, the operands will be procesed accordingly
+            
+            List<Number> getPercentageNumbers = percentageCalculation(operand1, operand2,operator);
+
+            operand1 = getPercentageNumbers.get(0);
+
+            operand2 = getPercentageNumbers.get(1);
+        }
+
         double result = 0.0;
+
         switch (operator) {
             case '+' ->
                 result = operand1.doubleValue() + operand2.doubleValue();
@@ -634,6 +666,38 @@ public class calcMainFrame extends javax.swing.JFrame {
         } else {
             // Display as a floating-point number
             resultDisplay.setText(Double.toString(result));
+        }
+    }
+
+    public List<Number> percentageCalculation(Number operand1, Number operand2, char operator) {
+        List<Number> numberList = new ArrayList<>();
+        
+        //This method takes the two operands previosly separated and gives the values for posterior calculation of the percentage
+
+        operand2 = operand2.doubleValue() / 100;
+        
+        //Validation if the percentage is multiplied or divided, does not require the following calculation
+        if (!(operator == '*' || operator == '/')) {
+
+            operand2 = operand1.doubleValue() * operand2.doubleValue();
+        }
+
+        numberList.add(operand1);
+
+        numberList.add(operand2);
+
+        return numberList;
+    }
+
+    public static Number processNumber(String input) {
+        try {
+            if (input.contains(".")) {
+                return Double.valueOf(input);
+            } else {
+                return Long.valueOf(input);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid number format: " + input);
         }
     }
 
@@ -681,8 +745,8 @@ public class calcMainFrame extends javax.swing.JFrame {
     }
 
     public void getButtonDisplay(String operatorButton) {
-        //Logic for setting moving the result to the main display when an operator is pressed for a button
 
+        //Logic for setting moving the result to the main display when an operator is pressed for a button
         switch (operatorButton) {
 
             case "+":
@@ -751,26 +815,14 @@ public class calcMainFrame extends javax.swing.JFrame {
         });
     }
 
-    public static Number processNumber(String input) {
-        try {
-            if (input.contains(".")) {
-                return Double.valueOf(input);
-            } else {
-                return Long.valueOf(input);
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid number format: " + input);
-        }
-    }
-
     public void performCalculationButton(String operatorButton) {
 
         createFilteredField(displayTextField);
 
         getButtonDisplay(operatorButton);
 
-        if (displayTextField.getText().matches("[-]*\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+")) {
-            Calculate();
+        if (displayTextField.getText().matches(basiCalculationRegex)) {
+            Calculate(false);
         }
     }
 
