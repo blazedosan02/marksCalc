@@ -596,11 +596,13 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void BackspaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackspaceButtonActionPerformed
 
-         if (!displayTextField.getText().isEmpty()) {
+        if (!displayTextField.getText().isEmpty()) {
 
-                displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
+            Calculate(true);
 
-            }
+            displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
+
+        }
 
     }//GEN-LAST:event_BackspaceButtonActionPerformed
 
@@ -729,6 +731,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     public void getKeyDisplay(KeyEvent evt) {
 
+        //Check input of keys 
         if (evt.getKeyChar() == KeyEvent.VK_ENTER && (!displayTextField.getText().equals("") && !resultDisplay.getText().equals(""))) {
 
             //The previous validation prevents the enter key from setting to blank if no operation is made
@@ -756,6 +759,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
                 displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
 
+                resultDisplay.setText("");
             }
         } else {
 
