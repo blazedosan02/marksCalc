@@ -603,11 +603,14 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         if (!displayTextField.getText().isEmpty()) {
 
-            Calculate(true);
-
             displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
 
+            resultDisplay.setText("");
         }
+        
+        performCalculationButton("");
+        
+        displayTextField.requestFocus();
 
     }//GEN-LAST:event_BackspaceButtonActionPerformed
 
@@ -768,9 +771,9 @@ public class calcMainFrame extends javax.swing.JFrame {
                 resultDisplay.setText("");
             }
         } else if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_V) {
-            
-          displayTextField.setText(getTextFieldEntry());
-            
+
+            displayTextField.setText(getTextFieldEntry());
+
             //Get the clipboard value
             try {
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
