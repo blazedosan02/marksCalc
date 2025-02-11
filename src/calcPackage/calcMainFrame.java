@@ -1,7 +1,12 @@
 package calcPackage;
 
 import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -272,9 +277,6 @@ public class calcMainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelCalcLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainPanelCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(mainPanelCalcLayout.createSequentialGroup()
-                        .addGap(330, 330, 330)
-                        .addComponent(resultDisplay))
                     .addComponent(displayTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelCalcLayout.createSequentialGroup()
                         .addGroup(mainPanelCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -320,7 +322,10 @@ public class calcMainFrame extends javax.swing.JFrame {
                                 .addComponent(PeriodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(EqualsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 6, Short.MAX_VALUE)))
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addGroup(mainPanelCalcLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(resultDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         mainPanelCalcLayout.setVerticalGroup(
@@ -668,6 +673,7 @@ public class calcMainFrame extends javax.swing.JFrame {
                 result = operand1.doubleValue() * operand2.doubleValue();
             case '/' -> {
                 if (operand2.doubleValue() == 0) {
+                    displayTextField.setText("");
                     resultDisplay.setText("Undefined");
                     return;
                 }
@@ -760,6 +766,18 @@ public class calcMainFrame extends javax.swing.JFrame {
                 displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
 
                 resultDisplay.setText("");
+            }
+        } else if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_V) {
+            
+          displayTextField.setText(getTextFieldEntry());
+            
+            //Get the clipboard value
+            try {
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                String data = (String) clipboard.getData(DataFlavor.stringFlavor);
+                displayTextField.setText(displayTextField.getText() + data);
+            } catch (UnsupportedFlavorException | IOException ex) {
+                ex.printStackTrace();
             }
         } else {
 
