@@ -609,6 +609,12 @@ public class calcMainFrame extends javax.swing.JFrame {
 
             displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
 
+             if (displayTextField.getText().length() == 0) { // CHECK THIS METHOD LATER AS IT REPEATS
+                     //Checks if the length is 0 when the backspace is pressed then sets the display to 0
+                    
+                    displayTextField.setText("0");
+                }
+            
             resultDisplay.setText("");
         }
 
@@ -772,6 +778,12 @@ public class calcMainFrame extends javax.swing.JFrame {
 
                 displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
 
+                if (displayTextField.getText().length() == 0) { // CHECK THIS METHOD LATER AS IT REPEATS
+                     //Checks if the length is 0 when the backspace is pressed then sets the display to 0
+                    
+                    displayTextField.setText("0");
+                }
+                
                 resultDisplay.setText("");
             }
         } else if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_V) {
