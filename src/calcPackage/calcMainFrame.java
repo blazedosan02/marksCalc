@@ -9,11 +9,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.DocumentFilter;
 
 public class calcMainFrame extends javax.swing.JFrame {
@@ -35,6 +37,8 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         mainPanelCalc = new javax.swing.JPanel();
         displayTextField = new javax.swing.JTextField();
+        Action beep = displayTextField.getActionMap().get(DefaultEditorKit.deletePrevCharAction);
+        beep.setEnabled(false);
         Button4 = new javax.swing.JButton();
         BackspaceButton = new javax.swing.JButton();
         Button7 = new javax.swing.JButton();
@@ -657,7 +661,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         if (isPercentage) {
 
-            //Validation is the percentage button is pressed, the operands will be procesed accordingly
+            //Validation if the percentage button is pressed, the operands will be procesed accordingly
             List<Number> getPercentageNumbers = percentageCalculation(operand1, operand2, operator);
 
             operand1 = getPercentageNumbers.get(0);
