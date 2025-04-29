@@ -605,15 +605,15 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void BackspaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackspaceButtonActionPerformed
 
-        if (!displayTextField.getText().isEmpty()) {
+        if (!displayTextField.getText().isEmpty() && !displayTextField.getText().equals("0")) {
 
             displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
 
             resultDisplay.setText("");
         }
-        
+
         performCalculationButton("");
-        
+
         displayTextField.requestFocus();
 
     }//GEN-LAST:event_BackspaceButtonActionPerformed
@@ -768,7 +768,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         } else if (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
 
-            if (!displayTextField.getText().isEmpty()) {
+            if (!displayTextField.getText().isEmpty() && !displayTextField.getText().equals("0")) {
 
                 displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
 
