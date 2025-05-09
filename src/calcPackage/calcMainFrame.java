@@ -7,6 +7,8 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Action;
@@ -609,12 +611,12 @@ public class calcMainFrame extends javax.swing.JFrame {
 
             displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
 
-             if (displayTextField.getText().length() == 0) { // CHECK THIS METHOD LATER AS IT REPEATS
-                     //Checks if the length is 0 when the backspace is pressed then sets the display to 0
-                    
-                    displayTextField.setText("0");
-                }
-            
+            if (displayTextField.getText().length() == 0) { // CHECK THIS METHOD LATER AS IT REPEATS
+                //Checks if the length is 0 when the backspace is pressed then sets the display to 0
+
+                displayTextField.setText("0");
+            }
+
             resultDisplay.setText("");
         }
 
@@ -629,8 +631,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         String input = displayTextField.getText();
         char[] inputArray = input.toCharArray();
 
-        Number operand1 = null;
-        Number operand2 = null;
+        BigDecimal operand1 = null;
+        BigDecimal operand2 = null;
         char operator = ' ';
         StringBuilder currentNumber = new StringBuilder();
 
@@ -668,53 +670,49 @@ public class calcMainFrame extends javax.swing.JFrame {
         if (isPercentage) {
 
             //Validation if the percentage button is pressed, the operands will be procesed accordingly
-            List<Number> getPercentageNumbers = percentageCalculation(operand1, operand2, operator);
+            List<BigDecimal> getPercentageNumbers = percentageCalculation(operand1, operand2, operator);
 
             operand1 = getPercentageNumbers.get(0);
-
             operand2 = getPercentageNumbers.get(1);
         }
 
-        double result = 0.0;
+        BigDecimal result = new BigDecimal("0.0");
 
         switch (operator) {
             case '+' ->
-                result = operand1.doubleValue() + operand2.doubleValue();
+                result = operand1.add(operand2);
             case '-' ->
-                result = operand1.doubleValue() - operand2.doubleValue();
+                result = operand1.subtract(operand2);
             case '*' ->
-                result = operand1.doubleValue() * operand2.doubleValue();
+                result = operand1.multiply(operand2);
             case '/' -> {
-                if (operand2.doubleValue() == 0) {
-                    displayTextField.setText("");
-                    resultDisplay.setText("Undefined");
-                    return;
-                }
-                result = operand1.doubleValue() / operand2.doubleValue();
+                //Check if there is a period after the 0
+//                if (operand2.doubleValue() == 0) {
+//                    displayTextField.setText("");
+//                    resultDisplay.setText("Undefined");
+//                    return;
+//                }
+                result = operand1.divide(operand2);
             }
 
         }
 
-        // Display the result
-        if (result == (int) result) {
-            // Display as integer if the result is a whole number
-            resultDisplay.setText(Integer.toString((int) result));
-        } else {
-            // Display as a floating-point number
-            resultDisplay.setText(Double.toString(result));
-        }
+        resultDisplay.setText(result.toString());
+
     }
 
-    public List<Number> percentageCalculation(Number operand1, Number operand2, char operator) {
-        List<Number> numberList = new ArrayList<>();
+    public List<BigDecimal> percentageCalculation(BigDecimal operand1, BigDecimal operand2, char operator) {
 
+        List<BigDecimal> numberList = new ArrayList<>();
+
+        BigDecimal oneHundred = new BigDecimal("100");
         //This method takes the two operands previosly separated and gives the values for posterior calculation of the percentage
-        operand2 = operand2.doubleValue() / 100;
+        operand2 = operand2.divide(oneHundred);
 
         //Validation if the percentage is multiplied or divided, does not require the following calculation
         if (!(operator == '*' || operator == '/')) {
 
-            operand2 = operand1.doubleValue() * operand2.doubleValue();
+            operand2 = operand1.multiply(operand2);
         }
 
         numberList.add(operand1);
@@ -724,12 +722,17 @@ public class calcMainFrame extends javax.swing.JFrame {
         return numberList;
     }
 
-    public static Number processNumber(String input) {
+    public static BigDecimal processNumber(String input) {
         try {
+
+            BigDecimal output = new BigDecimal(input);
+
+            BigInteger outputInteger = null;
+
             if (input.contains(".")) {
-                return Double.valueOf(input);
+                return output;
             } else {
-                return Long.valueOf(input);
+                return output = new BigDecimal(outputInteger = output.toBigInteger());
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid number format: " + input);
@@ -779,11 +782,11 @@ public class calcMainFrame extends javax.swing.JFrame {
                 displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
 
                 if (displayTextField.getText().length() == 0) { // CHECK THIS METHOD LATER AS IT REPEATS
-                     //Checks if the length is 0 when the backspace is pressed then sets the display to 0
-                    
+                    //Checks if the length is 0 when the backspace is pressed then sets the display to 0
+
                     displayTextField.setText("0");
                 }
-                
+
                 resultDisplay.setText("");
             }
         } else if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_V) {
