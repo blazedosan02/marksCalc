@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Action;
@@ -687,12 +688,11 @@ public class calcMainFrame extends javax.swing.JFrame {
                 result = operand1.multiply(operand2);
             case '/' -> {
                 //Check if there is a period after the 0
-//                if (operand2.doubleValue() == 0) {
-//                    displayTextField.setText("");
-//                    resultDisplay.setText("Undefined");
-//                    return;
-//                }
-                result = operand1.divide(operand2);
+                if (operand2.compareTo(BigDecimal.ZERO) == 0) {
+                    resultDisplay.setText("Undefined");
+                    return;
+                }
+                result = operand1.divide(operand2, 2, RoundingMode.HALF_DOWN);
             }
 
         }
