@@ -10,8 +10,13 @@ import java.io.ObjectInputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -637,6 +642,8 @@ public class calcMainFrame extends javax.swing.JFrame {
         char operator = ' ';
         StringBuilder currentNumber = new StringBuilder();
 
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.US);
+
         boolean negativeNumber = true;
 
         for (char c : inputArray) {
@@ -697,7 +704,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         }
 
-        resultDisplay.setText(result.toString());
+        resultDisplay.setText(numberFormat.format(result));
 
     }
 
@@ -756,8 +763,10 @@ public class calcMainFrame extends javax.swing.JFrame {
         //Check input of keys 
         if (evt.getKeyChar() == KeyEvent.VK_ENTER && (!displayTextField.getText().equals("") && !resultDisplay.getText().equals(""))) {
 
+            String unformattedString = resultDisplay.getText().replace(",", ""); //Takes the commas away
+
             //The previous validation prevents the enter key from setting to blank if no operation is made
-            displayTextField.setText(resultDisplay.getText());
+            displayTextField.setText(unformattedString);
 
             resultDisplay.setText("");
 
