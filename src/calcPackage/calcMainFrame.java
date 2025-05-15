@@ -574,7 +574,10 @@ public class calcMainFrame extends javax.swing.JFrame {
         //The previous validation prevents the equals key from setting to blank if no operation is made
         if (!displayTextField.getText().equals("") && !resultDisplay.getText().equals("")) {
 
-            displayTextField.setText(resultDisplay.getText());
+            String unformattedString = resultDisplay.getText().replace(",", ""); //Takes the commas away
+
+            //The previous validation prevents the enter key from setting to blank if no operation is made
+            displayTextField.setText(unformattedString);
 
             resultDisplay.setText("");
 
@@ -772,9 +775,9 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         } else if (evt.getKeyChar() == '+' || evt.getKeyChar() == '-' || evt.getKeyChar() == '*' || evt.getKeyChar() == '/') {
 
-            if (!resultDisplay.getText().equals("")) {
+            if (!resultDisplay.getText().replace(",", "").equals("")) {
 
-                displayTextField.setText(resultDisplay.getText());
+                displayTextField.setText(resultDisplay.getText().replace(",", ""));
 
             }
 
@@ -826,25 +829,25 @@ public class calcMainFrame extends javax.swing.JFrame {
             case "+":
                 if (!resultDisplay.getText().equals("")) {
 
-                    displayTextField.setText(resultDisplay.getText() + operatorButton);
+                    displayTextField.setText(resultDisplay.getText().replace(",", "") + operatorButton);
                 }
                 break;
             case "-":
                 if (!resultDisplay.getText().equals("")) {
 
-                    displayTextField.setText(resultDisplay.getText() + operatorButton);
+                    displayTextField.setText(resultDisplay.getText().replace(",", "") + operatorButton);
                 }
                 break;
             case "*":
                 if (!resultDisplay.getText().equals("")) {
 
-                    displayTextField.setText(resultDisplay.getText() + operatorButton);
+                    displayTextField.setText(resultDisplay.getText().replace(",", "") + operatorButton);
                 }
                 break;
             case "/":
                 if (!resultDisplay.getText().equals("")) {
 
-                    displayTextField.setText(resultDisplay.getText() + operatorButton);
+                    displayTextField.setText(resultDisplay.getText().replace(",", "") + operatorButton);
                 }
                 break;
 
