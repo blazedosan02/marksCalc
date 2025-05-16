@@ -6,17 +6,13 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -411,6 +407,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
         // TODO add your handling code here:
 
@@ -763,93 +760,82 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     public void getKeyDisplay(KeyEvent evt) {
 
-        //Check input of keys 
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER && (!displayTextField.getText().equals("") && !resultDisplay.getText().equals(""))) {
+        char keyChar = evt.getKeyChar();
+        int keyCode = evt.getKeyCode();
+        String displayText = displayTextField.getText();
+        String resultText = resultDisplay.getText().replace(",", "");
 
-            String unformattedString = resultDisplay.getText().replace(",", ""); //Takes the commas away
-
-            //The previous validation prevents the enter key from setting to blank if no operation is made
-            displayTextField.setText(unformattedString);
-
-            resultDisplay.setText("");
-
-        } else if (evt.getKeyChar() == '+' || evt.getKeyChar() == '-' || evt.getKeyChar() == '*' || evt.getKeyChar() == '/') {
-
-            if (!resultDisplay.getText().replace(",", "").equals("")) {
-
-                displayTextField.setText(resultDisplay.getText().replace(",", ""));
-
-            }
-
-            displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
-
-        } else if (evt.getKeyChar() == '.' && displayTextField.getText().equals("0")) {
-
-            displayTextField.setText("0.");
-
-        } else if (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
-
-            if (!displayTextField.getText().isEmpty() && !displayTextField.getText().equals("0")) {
-
-                displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
-
-                if (displayTextField.getText().length() == 0) { // CHECK THIS METHOD LATER AS IT REPEATS
-                    //Checks if the length is 0 when the backspace is pressed then sets the display to 0
-
-                    displayTextField.setText("0");
-                }
-
+        // Handle Enter
+        if (keyChar == KeyEvent.VK_ENTER) {
+            if (!displayText.isEmpty() && !resultText.isEmpty()) {
+                displayTextField.setText(resultText);
                 resultDisplay.setText("");
             }
-        } else if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_V) {
-
-            displayTextField.setText(getTextFieldEntry());
-
-            //Get the clipboard value
-            try {
-                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-                String data = (String) clipboard.getData(DataFlavor.stringFlavor);
-                displayTextField.setText(displayTextField.getText() + data);
-            } catch (UnsupportedFlavorException | IOException ex) {
-                ex.printStackTrace();
-            }
-        } else {
-
-            displayTextField.setText(getTextFieldEntry() + evt.getKeyChar());
-
+            return;
         }
+
+        // Handle Ctrl+V (Paste)
+        if (evt.isControlDown() && keyCode == KeyEvent.VK_V) {
+            handlePaste();
+            return;
+        }
+
+        // Handle basic operators
+        if ("+-*/".indexOf(keyChar) >= 0) {
+            if (!resultText.isEmpty()) {
+                displayTextField.setText(resultText);
+            }
+            displayTextField.setText(getTextFieldEntry() + keyChar);
+            return;
+        }
+
+        // Handle decimal
+        if (keyChar == '.' && "0".equals(displayText)) {
+            displayTextField.setText("0.");
+            return;
+        }
+
+        // Handle backspace
+        if (keyChar == KeyEvent.VK_BACK_SPACE) {
+            handleBackspace(displayText);
+            return;
+        }
+
+        // Default case (append key)
+        displayTextField.setText(getTextFieldEntry() + keyChar);
 
     }
 
-    public void getButtonDisplay(String operatorButton) {
+    private void handlePaste() {
+        displayTextField.setText(getTextFieldEntry());
+        try {
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            String data = (String) clipboard.getData(DataFlavor.stringFlavor);
+            displayTextField.setText(displayTextField.getText() + data);
+        } catch (UnsupportedFlavorException | IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void handleBackspace(String text) {
+        if (!text.isEmpty() && !"0".equals(text)) {
+            String updated = text.substring(0, text.length() - 1);
+            displayTextField.setText(updated.isEmpty() ? "0" : updated);
+            resultDisplay.setText("");
+        }
+    }
+
+    public void moveResultToDisplayButton(String operatorButton) {
 
         //Logic for setting moving the result to the main display when an operator is pressed for a button
-        switch (operatorButton) {
+        if ("+-*/".contains(operatorButton) && !operatorButton.equals("")) {
 
-            case "+":
-                if (!resultDisplay.getText().equals("")) {
+            if (!resultDisplay.getText().equals("")) {
 
-                    displayTextField.setText(resultDisplay.getText().replace(",", "") + operatorButton);
-                }
-                break;
-            case "-":
-                if (!resultDisplay.getText().equals("")) {
+                String cleanedResult = resultDisplay.getText().replace(",", "");
+                displayTextField.setText(cleanedResult + operatorButton);
 
-                    displayTextField.setText(resultDisplay.getText().replace(",", "") + operatorButton);
-                }
-                break;
-            case "*":
-                if (!resultDisplay.getText().equals("")) {
-
-                    displayTextField.setText(resultDisplay.getText().replace(",", "") + operatorButton);
-                }
-                break;
-            case "/":
-                if (!resultDisplay.getText().equals("")) {
-
-                    displayTextField.setText(resultDisplay.getText().replace(",", "") + operatorButton);
-                }
-                break;
+            }
 
         }
 
@@ -896,7 +882,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         createFilteredField(displayTextField);
 
-        getButtonDisplay(operatorButton);
+        moveResultToDisplayButton(operatorButton);
 
         if (displayTextField.getText().matches(basiCalculationRegex)) {
             Calculate(false);

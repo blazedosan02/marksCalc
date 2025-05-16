@@ -5,32 +5,32 @@
             <url>src/calcPackage/calcMainFrame.java</url>
             <bookmark id="6">
                 <name>displayTextFieldKeyReleased</name>
-                <line>509</line>
+                <line>516</line>
                 <key/>
             </bookmark>
             <bookmark id="2">
                 <name>Calculate</name>
-                <line>630</line>
+                <line>640</line>
                 <key/>
             </bookmark>
             <bookmark id="1">
                 <name>processNumber</name>
-                <line>734</line>
+                <line>746</line>
                 <key/>
             </bookmark>
             <bookmark id="3">
                 <name>getKeyDisplay</name>
-                <line>768</line>
+                <line>784</line>
                 <key/>
             </bookmark>
             <bookmark id="4">
                 <name>getButtonDisplay</name>
-                <line>826</line>
+                <line>842</line>
                 <key/>
             </bookmark>
             <bookmark id="5">
                 <name>performCalculationButton</name>
-                <line>897</line>
+                <line>913</line>
                 <key/>
             </bookmark>
         </file>
