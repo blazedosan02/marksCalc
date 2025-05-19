@@ -613,21 +613,15 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     private void BackspaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackspaceButtonActionPerformed
 
-        if (!displayTextField.getText().isEmpty() && !displayTextField.getText().equals("0")) {
+        String currentText = displayTextField.getText();
 
-            displayTextField.setText(displayTextField.getText().substring(0, displayTextField.getText().length() - 1));
-
-            if (displayTextField.getText().length() == 0) { // CHECK THIS METHOD LATER AS IT REPEATS
-                //Checks if the length is 0 when the backspace is pressed then sets the display to 0
-
-                displayTextField.setText("0");
-            }
-
+        if (!currentText.isEmpty() && !currentText.equals("0")) {
+            String updatedText = currentText.substring(0, currentText.length() - 1);
+            displayTextField.setText(updatedText.isEmpty() ? "0" : updatedText);
             resultDisplay.setText("");
         }
 
         performCalculationButton("");
-
         displayTextField.requestFocus();
 
     }//GEN-LAST:event_BackspaceButtonActionPerformed
