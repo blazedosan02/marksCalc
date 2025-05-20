@@ -163,11 +163,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="resultDisplay" pref="59" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="PercentButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="DivisionButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="ClearButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="BackspaceButton" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="PercentButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="DivisionButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="ClearButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -224,6 +226,9 @@
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="displayTextFieldKeyReleased"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="Action beep = displayTextField.getActionMap().get(DefaultEditorKit.deletePrevCharAction);&#xd;&#xa;beep.setEnabled(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="Button4">
           <Properties>
