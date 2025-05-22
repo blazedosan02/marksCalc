@@ -197,11 +197,11 @@ public class calcMainFrame extends javax.swing.JFrame {
     }
 
     public JMenuItem getThemeOneMenu() {
-        return ThemeOneMenu;
+        return DefaultThemeButton;
     }
 
     public void setThemeOneMenu(JMenuItem ThemeOneMenu) {
-        this.ThemeOneMenu = ThemeOneMenu;
+        this.DefaultThemeButton = ThemeOneMenu;
     }
 
     public JButton getTimesButton() {
@@ -302,7 +302,7 @@ public class calcMainFrame extends javax.swing.JFrame {
         aboutMenu = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         ThemeMenu = new javax.swing.JMenu();
-        ThemeOneMenu = new javax.swing.JMenuItem();
+        DefaultThemeButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calc");
@@ -686,13 +686,13 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         ThemeMenu.setText("Theme");
 
-        ThemeOneMenu.setText("Theme1");
-        ThemeOneMenu.addActionListener(new java.awt.event.ActionListener() {
+        DefaultThemeButton.setText("Homework (Default)");
+        DefaultThemeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ThemeOneMenuActionPerformed(evt);
+                DefaultThemeButtonActionPerformed(evt);
             }
         });
-        ThemeMenu.add(ThemeOneMenu);
+        ThemeMenu.add(DefaultThemeButton);
 
         editMenu.add(ThemeMenu);
 
@@ -933,21 +933,13 @@ public class calcMainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BackspaceButtonActionPerformed
 
-    private void ThemeOneMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemeOneMenuActionPerformed
+    private void DefaultThemeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DefaultThemeButtonActionPerformed
 
         Themes themes = new Themes(this);
         themes.DefaultTheme();
-        
-        
-        
-//        resultDisplay.setOpaque(true);
-//
-//        resultDisplay.setBackground(Color.BLACK);
-//
-//        resultDisplay.setForeground(Color.RED);
 
 
-    }//GEN-LAST:event_ThemeOneMenuActionPerformed
+    }//GEN-LAST:event_DefaultThemeButtonActionPerformed
 
     public void Calculate(boolean isPercentage) {
 
@@ -1251,6 +1243,7 @@ public class calcMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton Button8;
     private javax.swing.JButton Button9;
     private javax.swing.JButton ClearButton;
+    private javax.swing.JMenuItem DefaultThemeButton;
     private javax.swing.JButton DivisionButton;
     private javax.swing.JButton EqualsButton;
     private javax.swing.JMenuBar MenuBar;
@@ -1259,7 +1252,6 @@ public class calcMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton PeriodButton;
     private javax.swing.JButton PlusButton;
     private javax.swing.JMenu ThemeMenu;
-    private javax.swing.JMenuItem ThemeOneMenu;
     private javax.swing.JButton TimesButton;
     private javax.swing.JMenuItem aboutMenu;
     private javax.swing.JTextField displayTextField;

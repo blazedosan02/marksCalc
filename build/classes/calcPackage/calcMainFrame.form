@@ -29,12 +29,12 @@
                 <Property name="text" type="java.lang.String" value="Theme"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="ThemeOneMenu">
+                <MenuItem class="javax.swing.JMenuItem" name="DefaultThemeButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Theme1"/>
+                    <Property name="text" type="java.lang.String" value="Homework (Default)"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ThemeOneMenuActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DefaultThemeButtonActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="calcMainFrame_ThemeOneMenu"/>
