@@ -1,5 +1,6 @@
 package calcPackage;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -14,7 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -25,6 +31,234 @@ import javax.swing.text.DocumentFilter;
 public class calcMainFrame extends javax.swing.JFrame {
 
     String basiCalculationRegex = "[-]*\\d+(\\.\\d+)?+[+-\\/*]\\d+(\\.\\d+)?+";
+
+    public String getBasiCalculationRegex() {
+        return basiCalculationRegex;
+    }
+
+    public void setBasiCalculationRegex(String basiCalculationRegex) {
+        this.basiCalculationRegex = basiCalculationRegex;
+    }
+
+    public JButton getBackspaceButton() {
+        return BackspaceButton;
+    }
+
+    public void setBackspaceButton(JButton BackspaceButton) {
+        this.BackspaceButton = BackspaceButton;
+    }
+
+    public JButton getButton0() {
+        return Button0;
+    }
+
+    public void setButton0(JButton Button0) {
+        this.Button0 = Button0;
+    }
+
+    public JButton getButton1() {
+        return Button1;
+    }
+
+    public void setButton1(JButton Button1) {
+        this.Button1 = Button1;
+    }
+
+    public JButton getButton2() {
+        return Button2;
+    }
+
+    public void setButton2(JButton Button2) {
+        this.Button2 = Button2;
+    }
+
+    public JButton getButton3() {
+        return Button3;
+    }
+
+    public void setButton3(JButton Button3) {
+        this.Button3 = Button3;
+    }
+
+    public JButton getButton4() {
+        return Button4;
+    }
+
+    public void setButton4(JButton Button4) {
+        this.Button4 = Button4;
+    }
+
+    public JButton getButton5() {
+        return Button5;
+    }
+
+    public void setButton5(JButton Button5) {
+        this.Button5 = Button5;
+    }
+
+    public JButton getButton6() {
+        return Button6;
+    }
+
+    public void setButton6(JButton Button6) {
+        this.Button6 = Button6;
+    }
+
+    public JButton getButton7() {
+        return Button7;
+    }
+
+    public void setButton7(JButton Button7) {
+        this.Button7 = Button7;
+    }
+
+    public JButton getButton8() {
+        return Button8;
+    }
+
+    public void setButton8(JButton Button8) {
+        this.Button8 = Button8;
+    }
+
+    public JButton getButton9() {
+        return Button9;
+    }
+
+    public void setButton9(JButton Button9) {
+        this.Button9 = Button9;
+    }
+
+    public JButton getClearButton() {
+        return ClearButton;
+    }
+
+    public void setClearButton(JButton ClearButton) {
+        this.ClearButton = ClearButton;
+    }
+
+    public JButton getDivisionButton() {
+        return DivisionButton;
+    }
+
+    public void setDivisionButton(JButton DivisionButton) {
+        this.DivisionButton = DivisionButton;
+    }
+
+    public JButton getEqualsButton() {
+        return EqualsButton;
+    }
+
+    public void setEqualsButton(JButton EqualsButton) {
+        this.EqualsButton = EqualsButton;
+    }
+
+    public void setMenuBar(JMenuBar MenuBar) {
+        this.MenuBar = MenuBar;
+    }
+
+    public JButton getMinusButton() {
+        return MinusButton;
+    }
+
+    public void setMinusButton(JButton MinusButton) {
+        this.MinusButton = MinusButton;
+    }
+
+    public JButton getPercentButton() {
+        return PercentButton;
+    }
+
+    public void setPercentButton(JButton PercentButton) {
+        this.PercentButton = PercentButton;
+    }
+
+    public JButton getPeriodButton() {
+        return PeriodButton;
+    }
+
+    public void setPeriodButton(JButton PeriodButton) {
+        this.PeriodButton = PeriodButton;
+    }
+
+    public JButton getPlusButton() {
+        return PlusButton;
+    }
+
+    public void setPlusButton(JButton PlusButton) {
+        this.PlusButton = PlusButton;
+    }
+
+    public JMenu getThemeMenu() {
+        return ThemeMenu;
+    }
+
+    public void setThemeMenu(JMenu ThemeMenu) {
+        this.ThemeMenu = ThemeMenu;
+    }
+
+    public JMenuItem getThemeOneMenu() {
+        return ThemeOneMenu;
+    }
+
+    public void setThemeOneMenu(JMenuItem ThemeOneMenu) {
+        this.ThemeOneMenu = ThemeOneMenu;
+    }
+
+    public JButton getTimesButton() {
+        return TimesButton;
+    }
+
+    public void setTimesButton(JButton TimesButton) {
+        this.TimesButton = TimesButton;
+    }
+
+    public JMenuItem getAboutMenu() {
+        return aboutMenu;
+    }
+
+    public void setAboutMenu(JMenuItem aboutMenu) {
+        this.aboutMenu = aboutMenu;
+    }
+
+    public JTextField getDisplayTextField() {
+        return displayTextField;
+    }
+
+    public void setDisplayTextField(JTextField displayTextField) {
+        this.displayTextField = displayTextField;
+    }
+
+    public JMenu getEditMenu() {
+        return editMenu;
+    }
+
+    public void setEditMenu(JMenu editMenu) {
+        this.editMenu = editMenu;
+    }
+
+    public JMenu getFileMenu() {
+        return fileMenu;
+    }
+
+    public void setFileMenu(JMenu fileMenu) {
+        this.fileMenu = fileMenu;
+    }
+
+    public JPanel getMainPanelCalc() {
+        return mainPanelCalc;
+    }
+
+    public void setMainPanelCalc(JPanel mainPanelCalc) {
+        this.mainPanelCalc = mainPanelCalc;
+    }
+
+    public JTextField getResultDisplay() {
+        return resultDisplay;
+    }
+
+    public void setResultDisplay(JTextField resultDisplay) {
+        this.resultDisplay = resultDisplay;
+    }
 
     public calcMainFrame() {
         initComponents();
@@ -447,6 +681,11 @@ public class calcMainFrame extends javax.swing.JFrame {
         ThemeMenu.setText("Theme");
 
         ThemeOneMenu.setText("Theme1");
+        ThemeOneMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ThemeOneMenuActionPerformed(evt);
+            }
+        });
         ThemeMenu.add(ThemeOneMenu);
 
         editMenu.add(ThemeMenu);
@@ -687,6 +926,22 @@ public class calcMainFrame extends javax.swing.JFrame {
         displayTextField.requestFocus();
 
     }//GEN-LAST:event_BackspaceButtonActionPerformed
+
+    private void ThemeOneMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemeOneMenuActionPerformed
+
+        Themes themes = new Themes(this);
+        themes.DefaultTheme();
+        
+        
+        
+//        resultDisplay.setOpaque(true);
+//
+//        resultDisplay.setBackground(Color.BLACK);
+//
+//        resultDisplay.setForeground(Color.RED);
+
+
+    }//GEN-LAST:event_ThemeOneMenuActionPerformed
 
     public void Calculate(boolean isPercentage) {
 

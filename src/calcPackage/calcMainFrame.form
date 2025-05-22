@@ -33,6 +33,12 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Theme1"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ThemeOneMenuActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="calcMainFrame_ThemeOneMenu"/>
+                  </AuxValues>
                 </MenuItem>
               </SubComponents>
             </Menu>
