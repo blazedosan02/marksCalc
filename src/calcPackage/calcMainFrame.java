@@ -334,10 +334,11 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
         });
 
-        BackspaceButton.setBackground(new java.awt.Color(249, 249, 249));
+        BackspaceButton.setBackground(new java.awt.Color(102, 96, 255));
         BackspaceButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        BackspaceButton.setForeground(new java.awt.Color(51, 51, 255));
+        BackspaceButton.setForeground(new java.awt.Color(255, 255, 255));
         BackspaceButton.setText("<-");
+        BackspaceButton.setBorder(null);
         BackspaceButton.setMaximumSize(new java.awt.Dimension(60, 104));
         BackspaceButton.setMinimumSize(new java.awt.Dimension(60, 104));
         BackspaceButton.setPreferredSize(new java.awt.Dimension(60, 104));
@@ -383,7 +384,7 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
         });
 
-        ClearButton.setBackground(new java.awt.Color(51, 51, 255));
+        ClearButton.setBackground(new java.awt.Color(102, 96, 255));
         ClearButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ClearButton.setForeground(new java.awt.Color(255, 255, 255));
         ClearButton.setText("C");
@@ -397,10 +398,11 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
         });
 
-        DivisionButton.setBackground(new java.awt.Color(249, 249, 249));
+        DivisionButton.setBackground(new java.awt.Color(102, 96, 255));
         DivisionButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        DivisionButton.setForeground(new java.awt.Color(51, 51, 255));
+        DivisionButton.setForeground(new java.awt.Color(255, 255, 255));
         DivisionButton.setText("/");
+        DivisionButton.setBorder(null);
         DivisionButton.setMaximumSize(new java.awt.Dimension(60, 104));
         DivisionButton.setMinimumSize(new java.awt.Dimension(60, 104));
         DivisionButton.setPreferredSize(new java.awt.Dimension(60, 104));
@@ -410,10 +412,11 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
         });
 
-        PercentButton.setBackground(new java.awt.Color(249, 249, 249));
+        PercentButton.setBackground(new java.awt.Color(102, 96, 255));
         PercentButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        PercentButton.setForeground(new java.awt.Color(51, 51, 255));
+        PercentButton.setForeground(new java.awt.Color(255, 255, 255));
         PercentButton.setText("%");
+        PercentButton.setBorder(null);
         PercentButton.setMaximumSize(new java.awt.Dimension(60, 104));
         PercentButton.setMinimumSize(new java.awt.Dimension(60, 104));
         PercentButton.setPreferredSize(new java.awt.Dimension(60, 104));
@@ -471,10 +474,11 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
         });
 
-        TimesButton.setBackground(new java.awt.Color(249, 249, 249));
+        TimesButton.setBackground(new java.awt.Color(255, 160, 76));
         TimesButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        TimesButton.setForeground(new java.awt.Color(255, 102, 51));
+        TimesButton.setForeground(new java.awt.Color(255, 255, 255));
         TimesButton.setText("*");
+        TimesButton.setBorder(null);
         TimesButton.setMaximumSize(new java.awt.Dimension(60, 104));
         TimesButton.setMinimumSize(new java.awt.Dimension(60, 104));
         TimesButton.setPreferredSize(new java.awt.Dimension(60, 104));
@@ -520,7 +524,7 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
         });
 
-        EqualsButton.setBackground(new java.awt.Color(255, 102, 51));
+        EqualsButton.setBackground(new java.awt.Color(255, 160, 76));
         EqualsButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         EqualsButton.setForeground(new java.awt.Color(255, 255, 255));
         EqualsButton.setText("=");
@@ -535,10 +539,11 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
         });
 
-        MinusButton.setBackground(new java.awt.Color(249, 249, 249));
+        MinusButton.setBackground(new java.awt.Color(255, 160, 76));
         MinusButton.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        MinusButton.setForeground(new java.awt.Color(255, 102, 51));
+        MinusButton.setForeground(new java.awt.Color(255, 255, 255));
         MinusButton.setText("-");
+        MinusButton.setBorder(null);
         MinusButton.setMaximumSize(new java.awt.Dimension(60, 104));
         MinusButton.setMinimumSize(new java.awt.Dimension(60, 104));
         MinusButton.setPreferredSize(new java.awt.Dimension(60, 104));
@@ -548,10 +553,11 @@ public class calcMainFrame extends javax.swing.JFrame {
             }
         });
 
-        PlusButton.setBackground(new java.awt.Color(249, 249, 249));
+        PlusButton.setBackground(new java.awt.Color(255, 160, 76));
         PlusButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        PlusButton.setForeground(new java.awt.Color(255, 102, 51));
+        PlusButton.setForeground(new java.awt.Color(255, 255, 255));
         PlusButton.setText("+");
+        PlusButton.setBorder(null);
         PlusButton.setMaximumSize(new java.awt.Dimension(60, 104));
         PlusButton.setMinimumSize(new java.awt.Dimension(60, 104));
         PlusButton.setPreferredSize(new java.awt.Dimension(60, 104));
@@ -563,7 +569,7 @@ public class calcMainFrame extends javax.swing.JFrame {
 
         resultDisplay.setEditable(false);
         resultDisplay.setBackground(new java.awt.Color(252, 255, 255));
-        resultDisplay.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        resultDisplay.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         resultDisplay.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         resultDisplay.setBorder(null);
 
@@ -628,7 +634,7 @@ public class calcMainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(displayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                .addComponent(resultDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainPanelCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BackspaceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
